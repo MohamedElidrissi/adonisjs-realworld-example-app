@@ -16,4 +16,6 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
+Route.on('/register').render('auth.register').as('regiter')
+
 Route.on('/').render('home').as('home')
