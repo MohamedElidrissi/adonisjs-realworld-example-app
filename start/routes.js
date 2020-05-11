@@ -17,5 +17,6 @@
 const Route = use('Route')
 
 Route.on('/register').render('auth.register').as('regiter')
+Route.post('/register', 'AuthController.register')
 
 Route.on('/').render('home').as('home')
