@@ -1,6 +1,10 @@
 'use strict'
 
 class StoreUser {
+  get validateAll() {
+    return true
+  }
+
   get rules() {
     return {
       username: 'required|string|unique:users',
@@ -11,7 +15,8 @@ class StoreUser {
 
   get messages() {
     return {
-      'username.unique': 'This username is already used'
+      'username.unique': 'This username is already used',
+      'email.unique': 'This email is already used'
     }
   }
 }
