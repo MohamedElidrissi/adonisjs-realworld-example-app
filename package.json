@@ -30,7 +30,9 @@
     "@adonisjs/vow-browser": "^1.0.7",
     "mysql2": "^2.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sqlite3": "^4.2.0"
+  },
   "autoload": {
     "App": "./app"
   }
