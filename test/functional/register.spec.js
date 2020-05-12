@@ -37,17 +37,19 @@ test('register the user and redirect to home if all inputs are valid', async ({ 
   await assert.equal(user.email, email)
 }).timeout(20_000) // extend timeout duration
 
-test('redirect back to registration page and show error if username is already in use', async ({ assert, browser }) => {
+test('redirect back to registration page with old values and an error if username is already in use', async ({ assert, browser }) => {
   // visit the register page
   const page = await browser.visit('/register')
 
   // create a dummy user
   const user = await Factory.model('App/Models/User').create()
 
+  const [username, email] = [user.username, 'mohamed@gmail.com']
+
   // fill the username field with an already used username
   await page
-    .type('input[name="username"]', user.username)
-    .type('input[name="email"]', 'mohamed@gmail.com')
+    .type('input[name="username"]', username)
+    .type('input[name="email"]', email)
     .type('input[name="password"]', 'mySecretPassword')
     .submitForm('form')
     .waitForNavigation()
@@ -57,4 +59,8 @@ test('redirect back to registration page and show error if username is already i
 
   // we should have see the appropriate message in the page
   await page.assertHasIn('.error-messages', 'This username is already used')
+
+  // we should see the old username and email filled in the inputs
+  await page.assertValue('input[name="username"]', username)
+  await page.assertValue('input[name="email"]', email)
 }).timeout(20_000)
