@@ -17,6 +17,6 @@
 const Route = use('Route')
 
 Route.on('/register').render('auth.register').as('register')
-Route.post('/register', 'AuthController.register')
+Route.post('/register', 'AuthController.register').validator('StoreUser')
 
 Route.on('/').render('home').as('home')

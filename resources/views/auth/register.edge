@@ -10,7 +10,11 @@
             <a href={{ route('login') }}>Have an account?</a>
           </p>
 
-          {{--  <ul class="error-messages"><li>That email is already taken</li></ul>  --}}
+          <ul class="error-messages">
+            {{ elIf('<li>$self</li>', getErrorFor('username'), hasErrorFor('username')) }}
+            {{ elIf('<li>$self</li>', getErrorFor('email'), hasErrorFor('email')) }}
+            {{ elIf('<li>$self</li>', getErrorFor('password'), hasErrorFor('password')) }}
+          </ul>
 
           <form action={{ route('/register') }} method="post">
             {{ csrfField() }}
