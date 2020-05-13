@@ -13,6 +13,14 @@ class AuthController {
 
     response.route('home')
   }
+
+  async login({ auth, request, response, session }) {
+    const { email, password } = request.only(['email', 'password'])
+
+    await auth.attempt(email, password)
+
+    response.route('home')
+  }
 }
 
 module.exports = AuthController
