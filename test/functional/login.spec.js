@@ -8,7 +8,7 @@ const { test, trait } = use('Test/Suite')('Login User')
 trait('Test/Browser')
 trait('DatabaseTransactions')
 
-test('login the user when the credentials are correct and redirect to home page', async ({ assert, browser }) => {
+test('login the user when the credentials are correct and redirect to home page', async ({ browser }) => {
   const password = 'mySecretPassword'
 
   // create a dummy user
@@ -31,20 +31,20 @@ test('login the user when the credentials are correct and redirect to home page'
 
   // we should be logged in
   await page.assertHasIn('.navbar', user.username)
-}).timeout(0)
+})
 
-test('redirect the user to login page with old values when the credentials are invalid', async ({ assert, browser }) => {
+test('redirect the user to login page with old values when the credentials are invalid', async ({ browser }) => {
   // create a dummy user
-  const user = await Factory
+  const { email } = await Factory
     .model('App/Models/User')
     .create()
 
   // visit the login page
   const page = await browser.visit('/login')
 
-  // fill all the fields with valid inputs
+  // fill a field with invalid input
   await page
-    .type('input[name="email"]', user.email)
+    .type('input[name="email"]', email)
     .type('input[name="password"]', 'GuessedPassword')
     .submitForm('form')
     .waitForNavigation()
@@ -56,5 +56,5 @@ test('redirect the user to login page with old values when the credentials are i
   await page.assertHasIn('.error-messages', 'Invalid email or password')
 
   // we should see the old email filled in the input
-  await page.assertValue('input[name="email"]', user.email)
-}).timeout(0)
+  await page.assertValue('input[name="email"]', email)
+})

@@ -35,9 +35,9 @@ test('register the user and redirect to home if all inputs are valid', async ({ 
 
   await assert.equal(user.username, username)
   await assert.equal(user.email, email)
-}).timeout(20_000) // extend timeout duration
+})
 
-test('redirect back to registration page with old values and an error if username is already in use', async ({ assert, browser }) => {
+test('redirect back to registration page with old values and an error if username is already in use', async ({ browser }) => {
   // visit the register page
   const page = await browser.visit('/register')
 
@@ -63,7 +63,7 @@ test('redirect back to registration page with old values and an error if usernam
   // we should see the old username and email filled in the inputs
   await page.assertValue('input[name="username"]', username)
   await page.assertValue('input[name="email"]', email)
-}).timeout(20_000)
+})
 
 test('redirect back to registration page with old values and an error if email is already in use', async ({ browser }) => {
   // visit the register page
@@ -91,4 +91,4 @@ test('redirect back to registration page with old values and an error if email i
   // we should see the old username and email filled in the inputs
   await page.assertValue('input[name="username"]', username)
   await page.assertValue('input[name="email"]', email)
-}).timeout(20_000)
+})
