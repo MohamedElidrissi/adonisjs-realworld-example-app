@@ -29,7 +29,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">{{ auth.user.username }}</a>
+              <a class="nav-link" href="#">
+                <img src={{ auth.user.image }} alt="{{ auth.user.username }}'s profile image" class="user-pic">
+                {{ auth.user.username }}
+              </a>
             </li>
           @else
             <li class="nav-item">
