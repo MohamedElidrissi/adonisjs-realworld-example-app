@@ -17,7 +17,15 @@ class AuthController {
   async login({ auth, request, response, session }) {
     const { email, password } = request.only(['email', 'password'])
 
-    await auth.attempt(email, password)
+    try {
+      await auth.attempt(email, password)
+    } catch (error) {
+      session
+        .withErrors([{ field: 'email', message: 'Invalid email or password' }])
+        .flashOnly(['email'])
+
+      return response.route('back')
+    }
 
     response.route('home')
   }
