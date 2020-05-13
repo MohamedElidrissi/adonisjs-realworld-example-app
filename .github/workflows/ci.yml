@@ -17,6 +17,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.ref }}
     - name: Cache
       uses: actions/cache@v1.1.2
       with:
