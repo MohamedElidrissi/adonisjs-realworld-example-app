@@ -17,25 +17,28 @@
           <li class="nav-item">
             <a class="nav-link active" href={{ route('home') }}>Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href={{ route('login') }}>Sign in</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href={{ route('register') }}>Sign up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ion-compose"></i>&nbsp;New Post
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ion-gear-a"></i>&nbsp;Settings
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">{{ auth.user.username }}</a>
-          </li>
+          @loggedIn
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="ion-compose"></i>&nbsp;New Post
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="ion-gear-a"></i>&nbsp;Settings
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">{{ auth.user.username }}</a>
+            </li>
+          @else
+            <li class="nav-item">
+              <a class="nav-link" href={{ route('login') }}>Sign in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={{ route('register') }}>Sign up</a>
+            </li>
+          @endloggedIn
         </ul>
       </div>
     </nav>
