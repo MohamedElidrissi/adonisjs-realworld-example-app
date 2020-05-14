@@ -42,7 +42,7 @@
                   id="bio"
                   name="bio"
                   rows="8"
-                  placeholder="Short bio about you">{{ auth.user.bio }}</textarea>
+                  placeholder="Short bio about you">{{ auth.user.bio || '' }}</textarea>
               </fieldset>
               <fieldset class="form-group">
                 <label for="email" class="sr-only">Email Address</label>
