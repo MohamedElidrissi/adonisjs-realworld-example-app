@@ -27,3 +27,5 @@ Route.group(() => {
 }).middleware(['guest'])
 
 Route.on('/').render('home').as('home')
+
+Route.get('/settings', 'SettingController.index').as('settings')
