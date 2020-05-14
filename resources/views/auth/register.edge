@@ -1,0 +1,64 @@
+@layout('layouts.app')
+
+@section('main-content')
+  <div class="auth-page">
+    <div class="container page">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-xs-12">
+          <h1 class="text-xs-center">Sign up</h1>
+          <p class="text-xs-center">
+            <a href={{ route('login') }}>Have an account?</a>
+          </p>
+
+          <ul class="error-messages">
+            {{ elIf('<li>$self</li>', getErrorFor('username'), hasErrorFor('username')) }}
+            {{ elIf('<li>$self</li>', getErrorFor('email'), hasErrorFor('email')) }}
+            {{ elIf('<li>$self</li>', getErrorFor('password'), hasErrorFor('password')) }}
+          </ul>
+
+          <form action={{ route('/register') }} method="post">
+            {{ csrfField() }}
+            <fieldset class="form-group">
+              <label for="username" class="sr-only">Username</label>
+              <input
+                class="form-control form-control-lg"
+                type="text" id="username"
+                name="username"
+                value="{{ old('username', '') }}""
+                placeholder="Username"
+                required
+              >
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="email" class="sr-only">Email Address</label>
+              <input
+                class="form-control form-control-lg"
+                type="email"
+                id="email"
+                name="email"
+                value="{{ old('email', '') }}"
+                placeholder="Email Address"
+                required
+              >
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="password" class="sr-only">Password</label>
+              <input
+                class="form-control form-control-lg"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+              >
+            </fieldset>
+            <button type="submit" class="btn btn-lg btn-primary pull-xs-right">
+              Sign up
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+@endsection
