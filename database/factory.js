@@ -20,6 +20,8 @@ Factory.blueprint('App/Models/User', async (faker, _, data) => {
   return Object.assign({
     username: faker.username(),
     email: faker.email(),
-    password: faker.password()
+    password: faker.password(),
+    image: 'https://static.productionready.io/images/smiley-cyrus.jpg',
+    bio: faker.sentence()
   }, data)
 })
