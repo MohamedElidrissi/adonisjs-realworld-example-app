@@ -18,7 +18,9 @@ class AuthController {
     const { email, password } = request.only(['email', 'password'])
 
     try {
-      await auth.attempt(email, password)
+      await auth
+        .remember(true)
+        .attempt(email, password)
     } catch (error) {
       session
         .withErrors([{ field: 'email', message: 'Invalid email or password' }])
