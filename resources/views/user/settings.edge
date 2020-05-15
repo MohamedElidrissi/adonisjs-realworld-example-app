@@ -10,13 +10,14 @@
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">Your Settings</h1>
-          <form>
+          <form action={{ route('/settings') }} method="post">
+            {{ csrfField() }}
             <fieldset>
               <fieldset class="form-group">
                 <label for="image" class="sr-only">Profile Image URL</label>
                 <input
                   class="form-control"
-                  type="text"
+                  type="url"
                   id="image"
                   name="image"
                   value={{ auth.user.image }}
