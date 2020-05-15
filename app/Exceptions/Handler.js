@@ -25,6 +25,10 @@ class ExceptionHandler extends BaseExceptionHandler {
       return response.route('home')
     }
 
+    if (error.code === 'E_INVALID_SESSION') {
+      return response.route('home')
+    }
+
     return super.handle(...arguments)
   }
 

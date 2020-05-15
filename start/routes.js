@@ -28,5 +28,9 @@ Route.group(() => {
 
 Route.on('/').render('home').as('home')
 
-Route.get('/settings', 'SettingController.index').as('settings')
-Route.post('/settings', 'SettingController.update').validator('UpdateSettings')
+Route.group(() => {
+
+  Route.get('/settings', 'SettingController.index').as('settings')
+  Route.post('/settings', 'SettingController.update').validator('UpdateSettings')
+
+}).middleware(['auth'])
