@@ -27,3 +27,10 @@ Route.group(() => {
 }).middleware(['guest'])
 
 Route.on('/').render('home').as('home')
+
+Route.group(() => {
+
+  Route.get('/settings', 'SettingController.index').as('settings')
+  Route.post('/settings', 'SettingController.update').validator('UpdateSettings')
+
+}).middleware(['auth'])
