@@ -73,6 +73,10 @@
               </button>
             </fieldset>
           </form>
+          <form id="logout" action={{ route('logout') }} method="post">
+            {{ csrfField() }}
+            <button class="btn btn-outline-danger">Logout</button>
+          </form>
         </div>
       </div>
     </div>

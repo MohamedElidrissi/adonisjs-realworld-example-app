@@ -31,6 +31,12 @@ class AuthController {
 
     response.route('home')
   }
+
+  async logout({ auth, response }) {
+    await auth.logout()
+
+    response.route('home')
+  }
 }
 
 module.exports = AuthController

@@ -33,4 +33,6 @@ Route.group(() => {
   Route.get('/settings', 'SettingController.index').as('settings')
   Route.post('/settings', 'SettingController.update').validator('UpdateSettings')
 
+  Route.post('/logout', 'AuthController.logout').as('logout')
+
 }).middleware(['auth'])

@@ -67,11 +67,34 @@ test("update user settings", async ({ assert, browser }) => {
   /** @type {import('@adonisjs/framework/src/Hash')}  */
   const Hash = use('Hash')
 
-  // username should be updated
+  // all fields should be updated
   const updatedUser = await User.findBy('id', user.id)
   await assert.equal(updatedUser.image, image)
   await assert.equal(updatedUser.username, username)
   await assert.equal(updatedUser.bio, bio)
   await assert.equal(updatedUser.email, email)
   await assert.ok(Hash.verify(password, updatedUser.password))
+})
+
+test('logout user and redirect to home page', async ({ browser }) => {
+  // create a dummy user
+  const user = await Factory
+    .model('App/Models/User')
+    .create()
+
+  // visit the settings page while logged in
+  const page = await browser.visit('/settings', request => {
+    request.loginVia(user)
+  })
+
+  // submit the logout form
+  await page
+    .submitForm('form#logout')
+    .waitForNavigation()
+
+  // we should be redirected to the home page
+  await page.assertPath('/')
+
+  // the user should not be logged in
+  await page.assertNotExists('.navbar .nav-item img.user-pic')
 })
