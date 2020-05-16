@@ -1,0 +1,66 @@
+@layout('layouts.app')
+
+@section('title')
+  {{ pageTitle('Editor') }}
+@endsection
+
+@section('main-content')
+  <div class="editor-page">
+    <div class="container page">
+      <div class="row">
+        <div class="col-md-10 offset-md-1 col-xs-12">
+          <form>
+            <fieldset>
+              <fieldset class="form-group">
+                <label for="title" class="sr-only">Article Title</label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="title"
+                  name="title"
+                  placeholder="Article Title"
+                >
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="desc" class="sr-only">What's this article about?</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="desc"
+                  name="desc"
+                  placeholder="What's this article about?"
+                >
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="body" class="sr-only">Article Body</label>
+                <textarea
+                  class="form-control"
+                  id="body"
+                  name="body"
+                  rows="8"
+                  placeholder="Write your article (in markdown)">
+                </textarea>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="tags" class="sr-only">Article Tags</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="tags"
+                  name="tags"
+                  placeholder="Enter tags"
+                >
+                <small class="form-text text-muted">
+                  Seperate tags with spaces
+                </small>
+              </fieldset>
+              <button class="btn btn-lg pull-xs-right btn-primary" type="submit">
+                Publish Article
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
