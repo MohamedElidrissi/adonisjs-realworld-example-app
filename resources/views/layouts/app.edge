@@ -17,31 +17,37 @@
         <a class="navbar-brand" href={{ route('home') }}>conduit</a>
         <ul class="nav navbar-nav pull-xs-right">
           <li class="nav-item">
-            <a class="nav-link active" href={{ route('home') }}>Home</a>
+            <a class="nav-link {{ strIf('active', route('home') === url) }}" href={{ route('home') }}>
+              Home
+            </a>
           </li>
           @loggedIn
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link {{ strIf('active', route('#') === url) }}" href={{ route('#') }}>
                 <i class="ion-compose"></i>&nbsp;New Post
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={{ route('settings') }}>
+              <a class="nav-link {{ strIf('active', route('settings') === url) }}" href={{ route('settings') }}>
                 <i class="ion-gear-a"></i>&nbsp;Settings
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link {{ strIf('active', route('#') === url) }}" href={{ route('#') }}>
                 <img src={{ auth.user.image }} alt="{{ auth.user.username }}'s profile image" class="user-pic">
                 {{ auth.user.username }}
               </a>
             </li>
           @else
             <li class="nav-item">
-              <a class="nav-link" href={{ route('login') }}>Sign in</a>
+              <a class="nav-link {{ strIf('active', route('login') === url) }}" href={{ route('login') }}>
+                Sign in
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={{ route('register') }}>Sign up</a>
+              <a class="nav-link {{ strIf('active', route('register') === url) }}" href={{ route('register') }}>
+                Sign up
+              </a>
             </li>
           @endloggedIn
         </ul>

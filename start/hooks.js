@@ -10,6 +10,8 @@ function registerViewGlobals() {
   View.global('pageTitle', function (title) {
     return this.safe(`<title>${title} · Conduit</title>`)
   })
+
+  View.global('strIf', (str, render) => render ? str : '')
 }
 
 hooks.after.providersBooted(() => {
