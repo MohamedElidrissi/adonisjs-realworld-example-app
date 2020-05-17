@@ -33,3 +33,9 @@ Factory.blueprint('App/Models/Article', async (faker, _, data) => {
     body: faker.paragraph()
   }, data)
 })
+
+Factory.blueprint('App/Models/Tag', async (faker, _, data) => {
+  return Object.assign({
+    name: faker.word()
+  }, data)
+})
