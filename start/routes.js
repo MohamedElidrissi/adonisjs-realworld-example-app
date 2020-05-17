@@ -30,6 +30,9 @@ Route.on('/').render('home').as('home')
 
 Route.group(() => {
 
+  Route.on('/editor').render('article.editor').as('editor')
+  Route.post('/editor', 'ArticleController.store').validator('CreateArticle')
+
   Route.get('/settings', 'SettingController.index').as('settings')
   Route.post('/settings', 'SettingController.update').validator('UpdateSettings')
 

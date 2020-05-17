@@ -9,7 +9,8 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-10 offset-md-1 col-xs-12">
-          <form>
+          <form action={{ route('/editor') }} method="post">
+            {{ csrfField() }}
             <fieldset>
               <fieldset class="form-group">
                 <label for="title" class="sr-only">Article Title</label>
@@ -38,8 +39,7 @@
                   id="body"
                   name="body"
                   rows="8"
-                  placeholder="Write your article (in markdown)">
-                </textarea>
+                  placeholder="Write your article (in markdown)"></textarea>
               </fieldset>
               <fieldset class="form-group">
                 <label for="tags" class="sr-only">Article Tags</label>
