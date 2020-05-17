@@ -10,7 +10,6 @@ class ArticleSchema extends Schema {
       table.string('title').notNullable()
       table.string('desc').notNullable()
       table.text('body').notNullable()
-      table.string('tags').nullable()
       table
         .integer('user_id')
         .unsigned()
